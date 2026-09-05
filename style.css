@@ -1,0 +1,18 @@
+*, *::before, *:: after {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: darkgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#header,
+#footer {
+    background-color: grey;
+    font-size: 50px;
+    text-align: center;
+}
