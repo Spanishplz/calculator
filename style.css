@@ -8,6 +8,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
 }
 
 #header,
@@ -15,4 +17,78 @@ body {
     background-color: grey;
     font-size: 50px;
     text-align: center;
+}
+
+#content {
+    border: 1px solid purple;
+    height: 800px;
+    width: 650px;
+}
+
+#calculator {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px
+}
+
+/* top */
+#calculatorResults {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    height: 100px;
+}
+
+#screen {
+    width: 80%;
+    height: 50px;
+    border: 1px solid green;
+    font-size: 30px;
+    padding: 10px 30px;
+}
+
+/* bottom */
+#calculatorButtons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+#numbers {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    gap: 10px;
+    flex: 3 1 auto;
+}
+
+
+#symbols{
+    flex: 1 0 140px;
+    
+}
+
+
+
+.button {
+    height: 130px;
+    width: 130px;
+    background-color: yellow;
+    border-style: solid;
+    border-color: orange;
+    border-width: 2px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.symbols {
+    background-color: lightblue;
+    height: 110px;
+    width: 110px;
+
 }
