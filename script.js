@@ -43,14 +43,29 @@ calculator.addEventListener("click", (e) => {
     const button = e.target;
     const value = e.target.getAttribute("value");
     if(allButtons.includes(button)) {
-        if(value === "delete" || value === "clear") {
-            console.log("delete or clear");
+
+        if (!isNaN(value)) {
+            screen.value = screen.value + value;
+        } else if(value === "delete" || value === "clear") {
+            screen.value = "";
         } else {
             screen.value = screen.value + value;
         }
+        screen.dispatchEvent(screenUpdate);
     }
+    console.log(e);
 });
-console.log(screen);
-//screen numbers
+// console.log(screen);
+
+
+//screen numbers event listener
+let screenUpdate = new Event("input");
+
+screen.addEventListener("input", (e) => {
+    console.log(e.target);
+    console.log(e.target.value);
+    // console.log(e);
+    // console.log(e.target.value);
+});
 
 
