@@ -110,6 +110,7 @@ screen.addEventListener("input", (e) => {
         // function here
         break;
 
+        // also works
     case "=":
         console.log(numberA, numberB);
         total = sum(numberB, numberA);
@@ -118,9 +119,14 @@ screen.addEventListener("input", (e) => {
         // function here
         break;
 
-
+        // working clear
     case "clear":
-        
+        number = "";
+        numberA = "";
+        numberB = "";
+        total = "";
+        console.log(numberA, numberB);
+        screen.value = "";
         break;
     case "delete":
 
@@ -139,3 +145,6 @@ screen.addEventListener("input", (e) => {
 function sum(numA, numB) {
     return Number(numA) + Number(numB);
 }
+
+
+let
