@@ -9,6 +9,10 @@ const symbolsDiv = document.querySelector("#symbols");
 // create screen
 const screen = document.createElement("input");
 screen.setAttribute("id", "screen");
+screen.setAttribute("type", "text");
+screen.style.textAlign = "right";
+
+
 calculatorResults.appendChild(screen);
 
 // create number buttons
@@ -39,10 +43,14 @@ calculator.addEventListener("click", (e) => {
     const button = e.target;
     const value = e.target.getAttribute("value");
     if(allButtons.includes(button)) {
-        console.log(value);
+        if(value === "delete" || value === "clear") {
+            console.log("delete or clear");
+        } else {
+            screen.value = screen.value + value;
+        }
     }
 });
-
-
+console.log(screen);
+//screen numbers
 
 
