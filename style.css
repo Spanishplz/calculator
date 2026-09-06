@@ -44,7 +44,7 @@ body {
 
 #screen {
     width: 80%;
-    height: 50px;
+    height: 70px;
     border: 1px solid green;
     font-size: 30px;
     padding: 10px 30px;
@@ -88,7 +88,7 @@ body {
 
 .symbols {
     background-color: lightblue;
-    height: 110px;
-    width: 110px;
+    height: 100px;
+    width: 100px;
 
 }

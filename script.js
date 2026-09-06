@@ -1,6 +1,6 @@
 // first buttons
 let numbers = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9];
-let operations = ["+", "-", "x", "÷", "clear"].reverse();
+let operations = ["+", "-", "x", "÷", "delete", "clear" ].reverse();
 
 const calculatorResults = document.querySelector("#calculatorResults");
 const numbersDiv = document.querySelector("#numbers");
@@ -29,6 +29,18 @@ operations.forEach((elem) => {
     symButton.textContent = elem.toString();
     symButton.setAttribute("value", `${elem}`);
     symbolsDiv.appendChild(symButton);
+});
+
+// click events for buttons values
+const calculator = document.querySelector("#content");
+const  allButtonsNodelist = document.querySelectorAll("#content .button");
+const allButtons = Array.from(allButtonsNodelist);
+calculator.addEventListener("click", (e) => {
+    const button = e.target;
+    const value = e.target.getAttribute("value");
+    if(allButtons.includes(button)) {
+        console.log(value);
+    }
 });
 
 
