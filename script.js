@@ -43,29 +43,99 @@ calculator.addEventListener("click", (e) => {
     const button = e.target;
     const value = e.target.getAttribute("value");
     if(allButtons.includes(button)) {
-
-        if (!isNaN(value)) {
-            screen.value = screen.value + value;
-        } else if(value === "delete" || value === "clear") {
-            screen.value = "";
-        } else {
-            screen.value = screen.value + value;
-        }
+        let screenUpdate = new CustomEvent("input", {
+            detail: {
+                buttonValue: value,
+                name: "Sofi",
+                last: "Cáceres",
+            }
+        });
+        screen.value = screen.value + value;
         screen.dispatchEvent(screenUpdate);
+
+            // if (!isNaN(value)) {
+        //     screen.value = screen.value + value;
+        // } else if(value === "delete" || value === "clear") {
+        //     screen.value = "";
+        // } else {
+        //     screen.value = screen.value + value;
+        // }
+    
     }
-    console.log(e);
+    // console.log(e);
 });
 // console.log(screen);
 
 
 //screen numbers event listener
 let screenUpdate = new Event("input");
-
+let number = "";
+let numberA = "";
+let symbol = "";
+let numberB = "";
+let total = "";
 screen.addEventListener("input", (e) => {
-    console.log(e.target);
-    console.log(e.target.value);
-    // console.log(e);
+    // console.log(e.detail.buttonValue);
+    const clickValue = e.detail.buttonValue;
     // console.log(e.target.value);
+    // if (!isNaN(clickValue)) {
+    //     numberString = numberString + clickValue;
+    // }
+    switch(clickValue) {
+    case "0":
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9":
+    case ".":
+        number = number + clickValue;
+        numberA = Number(number);
+        // console.log(`numberA value is: ${numberA}`);
+        break;
+
+    case "+":
+    case "-":
+    case "x":
+    case "÷":
+        // symbol = clickValue;
+        numberB = numberA;
+        number = "";
+        console.log(numberA, numberB);
+
+        // function here
+        break;
+
+    case "=":
+        console.log(numberA, numberB);
+        total = sum(numberB, numberA);
+        screen.value = total;
+        console.log(total);
+        // function here
+        break;
+
+
+    case "clear":
+        
+        break;
+    case "delete":
+
+    default:
+        break;
+    }
+
+
+    
+
+
+
 });
 
 
+function sum(numA, numB) {
+    return Number(numA) + Number(numB);
+}
