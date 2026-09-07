@@ -60,18 +60,29 @@ calculator.addEventListener("click", (e) => {
         // } else {
         //     screen.value = screen.value + value;
         // }
-    
+
     }
     // console.log(e);
 });
 // console.log(screen);
 
 
+
+
+
+
+
+
+
+
+
 //screen numbers event listener
 let screenUpdate = new Event("input");
 let number = "";
 let numberA = "";
+let numArray = [];
 let symbol = "";
+let lastSymbol = "";
 let numberB = "";
 let total = "";
 screen.addEventListener("input", (e) => {
@@ -94,29 +105,82 @@ screen.addEventListener("input", (e) => {
     case "9":
     case ".":
         number = number + clickValue;
-        numberA = Number(number);
-        // console.log(`numberA value is: ${numberA}`);
-        break;
+        if(symbol) {
+            numberB = +number;
+            break;
+        } else {
+            numberA = +number;
+            break;
+        }
 
     case "+":
     case "-":
     case "x":
     case "÷":
-        // symbol = clickValue;
-        numberB = numberA;
+        console.log(symbol);
+        if(numberA && numberB && symbol) {
+            switch(symbol) {
+            case "+":
+                symbol = "+";
+                total = operationsObj.sum(numberA, numberB);
+                screen.value = total;
+                numberA = total;
+                symbol = "";
+                break;
+            case "-":
+                symbol = "-";
+                total = operationsObj.sub(numberA, numberB);
+                screen.value = total;
+                numberA = total;
+                symbol = "";
+                break;
+            case "x":
+                symbol = "x";
+                total = operationsObj.mul(numberA, numberB);
+                screen.value = total;
+                numberA = total;
+                symbol = "";
+                break;
+            case "÷":
+                symbol = "÷";
+                total = operationsObj.div(numberA, numberB);
+                screen.value = total;;
+                numberA = total;
+                symbol = "";
+                break;
+            }
+        }
+        symbol = clickValue;
         number = "";
-        console.log(numberA, numberB);
-
-        // function here
         break;
 
         // also works
     case "=":
-        console.log(numberA, numberB);
-        total = sum(numberB, numberA);
-        screen.value = total;
+        if(numberA && numberB && symbol) {
+            switch(symbol) {
+            case "+":
+                total = operationsObj.sum(numberA, numberB);
+                numberA = total;
+                break;
+            case "-":
+                total = operationsObj.sub(numberA, numberB);
+                numberA = total;
+                break;
+            case "x":
+                total = operationsObj.mul(numberA, numberB);
+                numberA = total;
+                break;
+            case "÷":
+                total = operationsObj.div(numberA, numberB);
+                numberA = total;
+                break;
+            }
+
+        }
+        number = "";
         console.log(total);
-        // function here
+        screen.value.concat(symbol);
+
         break;
 
         // working clear
@@ -124,6 +188,7 @@ screen.addEventListener("input", (e) => {
         number = "";
         numberA = "";
         numberB = "";
+        previousNumber = "";
         total = "";
         console.log(numberA, numberB);
         screen.value = "";
@@ -134,10 +199,7 @@ screen.addEventListener("input", (e) => {
         break;
     }
 
-
-    
-
-
+    console.log(numberA, symbol, numberB,total);
 
 });
 
@@ -147,4 +209,35 @@ function sum(numA, numB) {
 }
 
 
-let
+
+const operationsObj = {
+    sum: function sum(numA, numB) {
+        return Number(numA) + Number(numB);
+    },
+    sub: function sub(numA, numB) {
+        return Number(numA) - Number(numB);
+    },
+    mul: function mul(numA, numB) {
+        return Number(numA) * Number(numB);
+    },
+    div: function div(numA, numB) {
+        return Number(numA) / Number(numB);
+    },
+};
+
+
+
+// switch(symbol) {
+// case "+":
+//     total = operationsObj.sum(numberB, numberA);
+//     break;
+// case "-":
+//     total = operationsObj.sub(numberB, numberA);
+//     break;
+// case "x":
+//     total = operationsObj.mul(numberB, numberA);
+//     break;
+// case "÷":
+//     total = operationsObj.div(numberB, numberA);
+//     break;
+// }
