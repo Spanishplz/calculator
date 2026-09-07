@@ -90,8 +90,6 @@ screen.addEventListener("input", (e) => {
         numArr[1] = "";
         result = "";
         screen.value = "";
-
-
     } else {
         if (numArr[0]) {
             numArr[1] = current;
@@ -99,8 +97,11 @@ screen.addEventListener("input", (e) => {
         } else {
             numArr[0] = current;
         }
-
+        if (sym === "=") {
+            sym = clickValue;
+        }
         if (numArr[0] && numArr[1] && sym) {
+            console.log(`Three values:${numArr} and ${sym}`);
             result = operate(numArr[0], numArr[1], sym).toString();
             if(sym === "+" ||
                sym === "-" ||
@@ -114,13 +115,13 @@ screen.addEventListener("input", (e) => {
                 sym = "";
             }
             screen.value = result;
-            console.log(result);
+            console.log(`The result is: ${result}`);
         }
         sym = clickValue;
-        console.log(`My symbol: ${clickValue}`);
+        // console.log(`My symbol: ${clickValue}`);
         current = "";
     }
-    console.log(numArr);
+    // console.log(numArr);
     // screen.value = result;
 });
 
