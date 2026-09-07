@@ -70,7 +70,7 @@ screen.addEventListener("input", (e) => {
 
     if(!isNaN(+clickValue)) {
         current = current.concat(clickValue);
-        screen.value =current;
+        screen.value = current;
     } else if (clickValue === ".") {
         let dot;
         for(const num of current) {
@@ -82,53 +82,29 @@ screen.addEventListener("input", (e) => {
             current = current.concat(clickValue);
             screen.value = current;
         }
-    } else if (clickValue === "+" ||
-               clickValue === "-" ||
-               clickValue === "x" ||
-               clickValue === "÷" ){
-        sym = clickValue;
-        numArr[1] = sym;
-        if(numArr[0]) {
-            numArr[2] = current;
+
+    } else {
+        if (numArr[0]) {
+            numArr[1] = current;
+
         } else {
-            console.log(`hello`);
             numArr[0] = current;
         }
-        if (numArr[0] && numArr[1] && numArr[2]) {
-            console.log("I have three");
 
-            console.log(numArr[0], numArr[1], numArr[2]);
-            switch (numArr[1]) {
-            case "+":
-                result = operate.sum(numArr[0], numArr[2]);
-                break;
-            case "-":
-                result = operate.sub(numArr[0], numArr[2]);
-                break;
-            case "*":
-                result = operate.mul(numArr[0], numArr[2]);
-                break;
-            case "÷":
-                result = operate.div(numArr[0], numArr[2]);
-                break;
-            }
-            current = "";
-            // numArray = [];
-            screen.value = result;
+        if (numArr[0] && numArr[1] && sym) {
+            result = operate(numArr[0], numArr[1], sym);
             console.log(result);
-
+            numArr[0] = "";
+            numArr[1] = "";
         }
-
-
-        current = current + sym;
-        // screen.value = current;
-
+        sym = clickValue;
+        console.log(`My symbol: ${clickValue}`);
+        current = "";
+        
 
     }
-    console.log(numArr[0], numArr[1], numArr[2]);
     console.log(numArr);
-    // console.log(numA);
-    // screen.value = current;
+    screen.value = result;
 });
 
 
@@ -138,18 +114,22 @@ function sum(numA, numB) {
 
 
 
-const operate = {
-    sum: function sum(numA, numB) {
-        return Number(numA) + Number(numB);
-    },
-    sub: function sub(numA, numB) {
-        return Number(numA) - Number(numB);
-    },
-    mul: function mul(numA, numB) {
-        return Number(numA) * Number(numB);
-    },
-    div: function div(numA, numB) {
-        return Number(numA) / Number(numB);
-    },
-};
+function operate(numA, numB, sym) {
+    let total = "";
+    switch (sym) {
+    case "+":
+        total = Number(numA) + Number(numB);
+        break;
+    case "-":
+        total = Number(numA) - Number(numB);
+        break;
+    case "x":
+        total = Number(numA) * Number(numB);
+        break;
+    case "÷":
+        total = Number(numA) / Number(numB);
+        break;
+    }
+    return total;
+}
 
