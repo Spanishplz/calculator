@@ -123,34 +123,31 @@ screen.addEventListener("input", (e) => {
             case "+":
                 symbol = "+";
                 total = operationsObj.sum(numberA, numberB);
-                screen.value = total;
+                // screen.value = total;
                 numberA = total;
-                symbol = "";
                 break;
             case "-":
                 symbol = "-";
                 total = operationsObj.sub(numberA, numberB);
-                screen.value = total;
+                // screen.value = total;
                 numberA = total;
-                symbol = "";
                 break;
             case "x":
                 symbol = "x";
                 total = operationsObj.mul(numberA, numberB);
-                screen.value = total;
+                // screen.value = total;
                 numberA = total;
-                symbol = "";
                 break;
             case "÷":
                 symbol = "÷";
                 total = operationsObj.div(numberA, numberB);
-                screen.value = total;;
+                // screen.value = total;;
                 numberA = total;
-                symbol = "";
                 break;
             }
         }
         symbol = clickValue;
+        screen.value = total + symbol;
         number = "";
         break;
 
@@ -160,18 +157,22 @@ screen.addEventListener("input", (e) => {
             switch(symbol) {
             case "+":
                 total = operationsObj.sum(numberA, numberB);
+                screen.value = total;
                 numberA = total;
                 break;
             case "-":
                 total = operationsObj.sub(numberA, numberB);
+                screen.value = total;
                 numberA = total;
                 break;
             case "x":
                 total = operationsObj.mul(numberA, numberB);
+                screen.value = total;
                 numberA = total;
                 break;
             case "÷":
                 total = operationsObj.div(numberA, numberB);
+                screen.value = total;
                 numberA = total;
                 break;
             }
@@ -180,6 +181,7 @@ screen.addEventListener("input", (e) => {
         number = "";
         console.log(total);
         screen.value.concat(symbol);
+        screen.value = total;
 
         break;
 
