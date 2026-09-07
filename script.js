@@ -83,6 +83,15 @@ screen.addEventListener("input", (e) => {
             screen.value = current;
         }
 
+    } else if(clickValue === "clear") {
+        numArr = [];
+        sym = "";
+        numArr[0] = "";
+        numArr[1] = "";
+        result = "";
+        screen.value = "";
+
+
     } else {
         if (numArr[0]) {
             numArr[1] = current;
@@ -92,19 +101,27 @@ screen.addEventListener("input", (e) => {
         }
 
         if (numArr[0] && numArr[1] && sym) {
-            result = operate(numArr[0], numArr[1], sym);
+            result = operate(numArr[0], numArr[1], sym).toString();
+            if(sym === "+" ||
+               sym === "-" ||
+               sym === "*" ||
+               sym === "÷") {
+                numArr[0] = result;
+                numArr[1] = "";
+            } else  if (sym === "="){
+                numArr[0] = "";
+                numArr[1] = "";
+                sym = "";
+            }
+            screen.value = result;
             console.log(result);
-            numArr[0] = "";
-            numArr[1] = "";
         }
         sym = clickValue;
         console.log(`My symbol: ${clickValue}`);
         current = "";
-        
-
     }
     console.log(numArr);
-    screen.value = result;
+    // screen.value = result;
 });
 
 
@@ -129,7 +146,8 @@ function operate(numA, numB, sym) {
     case "÷":
         total = Number(numA) / Number(numB);
         break;
+    default:
+        break;
     }
     return total;
 }
-
