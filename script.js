@@ -84,6 +84,7 @@ screen.addEventListener("input", (e) => {
         }
 
     } else if(clickValue === "clear") {
+        current = "";
         numArr = [];
         sym = "";
         numArr[0] = "";
@@ -97,22 +98,21 @@ screen.addEventListener("input", (e) => {
         } else {
             numArr[0] = current;
         }
-        if (sym === "=") {
-            sym = clickValue;
-        }
+
         if (numArr[0] && numArr[1] && sym) {
             console.log(`Three values:${numArr} and ${sym}`);
             result = operate(numArr[0], numArr[1], sym).toString();
-            if(sym === "+" ||
-               sym === "-" ||
-               sym === "*" ||
-               sym === "÷") {
-                numArr[0] = result;
-                numArr[1] = "";
-            } else  if (sym === "="){
+            if (sym === "="){
                 numArr[0] = "";
                 numArr[1] = "";
                 sym = "";
+            }else if(sym === "+" ||
+                sym === "-" ||
+                sym === "x" ||
+                sym === "÷") {
+                numArr[0] = result;
+                numArr[1] = "";
+            } else {
             }
             screen.value = result;
             console.log(`The result is: ${result}`);
