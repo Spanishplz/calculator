@@ -46,20 +46,10 @@ calculator.addEventListener("click", (e) => {
         let screenUpdate = new CustomEvent("input", {
             detail: {
                 buttonValue: value,
-                name: "Sofi",
-                last: "Cáceres",
             }
         });
         screen.value = screen.value + value;
         screen.dispatchEvent(screenUpdate);
-
-            // if (!isNaN(value)) {
-        //     screen.value = screen.value + value;
-        // } else if(value === "delete" || value === "clear") {
-        //     screen.value = "";
-        // } else {
-        //     screen.value = screen.value + value;
-        // }
 
     }
     // console.log(e);
@@ -88,6 +78,7 @@ let total = "";
 screen.addEventListener("input", (e) => {
     // console.log(e.detail.buttonValue);
     const clickValue = e.detail.buttonValue;
+    console.log(clickValue);
     // console.log(e.target.value);
     // if (!isNaN(clickValue)) {
     //     numberString = numberString + clickValue;
@@ -120,26 +111,26 @@ screen.addEventListener("input", (e) => {
         if(numberA && numberB && symbol) {
             switch(symbol) {
             case "+":
-                symbol = "+";
                 total = operationsObj.sum(numberA, numberB);
                 // screen.value = total;
+                numberB = "";
                 numberA = total.toString();
                 break;
             case "-":
-                symbol = "-";
                 total = operationsObj.sub(numberA, numberB);
                 // screen.value = total;
+                numberB = "";
                 numberA = total.toString();
                 break;
             case "x":
-                symbol = "x";
                 total = operationsObj.mul(numberA, numberB);
+                numberB = "";
                 numberA = total.toString();
                 // screen.value = total;
                 break;
             case "÷":
-                symbol = "÷";
                 total = operationsObj.div(numberA, numberB);
+                numberB = "";
                 numberA = total.toString();
                 // screen.value = total;;
                 break;
@@ -157,35 +148,34 @@ screen.addEventListener("input", (e) => {
 
         // also works
     case "=":
+        console.log(numberA, symbol, numberB);
         if(numberA && numberB && symbol) {
             switch(symbol) {
             case "+":
                 total = operationsObj.sum(numberA, numberB);
-                screen.value = total;
-                numberA = total;
+                numberB = "";
+                numberA = total.toString();
                 break;
             case "-":
                 total = operationsObj.sub(numberA, numberB);
-                screen.value = total;
-                numberA = total;
+                numberB = "";
+                numberA = total.toString();
                 break;
             case "x":
                 total = operationsObj.mul(numberA, numberB);
-                screen.value = total;
-                numberA = total;
+                numberB = "";
+                numberA = total.toString();
                 break;
             case "÷":
                 total = operationsObj.div(numberA, numberB);
-                screen.value = total;
-                numberA = total;
+                numberB = "";
+                numberA = total.toString();
                 break;
             }
 
         }
+        console.log(`After equals: ${numberA}, ${symbol}, ${numberB}`);
         number = "";
-
-        console.log(total);
-        screen.value.concat(symbol);
         screen.value = total;
 
         break;
@@ -206,7 +196,7 @@ screen.addEventListener("input", (e) => {
         break;
     }
 
-    console.log(numberA, symbol, numberB,total);
+    // console.log(numberA, symbol, numberB,total);
 
 });
 
