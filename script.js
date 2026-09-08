@@ -1,6 +1,7 @@
 // first buttons
 let numbers = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let operations = ["+", "-", "x", "÷", "delete", "clear" ].reverse();
+// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "delete", "clear"];
 
 const calculatorResults = document.querySelector("#calculatorResults");
 const numbersDiv = document.querySelector("#numbers");
@@ -154,3 +155,24 @@ function operate(numA, numB, sym) {
     }
     return total;
 }
+
+// // keyboard support
+// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "delete", "clear"];
+// document.addEventListener("keyup", (e)=> {
+//     const keyStrings = hotkeys.map((key) => key.toString());
+//     // console.log(keyStrings);
+//     const keyName = e.key;
+//     console.log(keyName);
+//     if(keyStrings.includes(keyName)) {
+//         switch(keyName) {
+//         case "*":
+//             break;
+//         case "Escape":
+//             break;
+//         case "Backspace":
+//             break;
+//         case "Enter":
+//             break;
+//         }
+//     }
+// });
