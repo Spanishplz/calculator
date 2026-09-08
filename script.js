@@ -67,10 +67,13 @@ let screenUpdate = new Event("input");
 screen.addEventListener("input", (e) => {
     const clickValue = e.detail.buttonValue;
     // console.log(clickValue);
-
     if(!isNaN(+clickValue)) {
-        current = current.concat(clickValue);
-        screen.value = current;
+        if (numArr[0] && sym === "=") {
+
+        } else {
+            current = current.concat(clickValue);
+            screen.value = current;
+        }
     } else if (clickValue === ".") {
         let dot;
         for(const num of current) {
@@ -98,22 +101,21 @@ screen.addEventListener("input", (e) => {
         } else {
             numArr[0] = current;
         }
-
         if (numArr[0] && numArr[1] && sym) {
             console.log(`Three values:${numArr} and ${sym}`);
             result = operate(numArr[0], numArr[1], sym).toString();
             if (sym === "="){
-                numArr[0] = "";
-                numArr[1] = "";
                 sym = "";
             }else if(sym === "+" ||
                 sym === "-" ||
                 sym === "x" ||
                 sym === "÷") {
-                numArr[0] = result;
-                numArr[1] = "";
-            } else {
+
             }
+
+            numArr[0] = result;
+            numArr[1] = "";
+
             screen.value = result;
             console.log(`The result is: ${result}`);
         }
