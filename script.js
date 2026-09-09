@@ -121,7 +121,13 @@ num2 ${numArr[1]}`
 
         } else if (numArr[0] && numArr[1] && sym) {
             console.log(`Three values:${numArr} and ${sym}`);
-            result = operate(numArr[0], numArr[1], sym).toString();
+            if(numArr[1] === "0" && sym === "÷") {
+                debugger;
+
+            } else {
+                result = operate(numArr[0], numArr[1], sym).toString();
+            }
+
             if (sym === "="){
                 sym = "";
             }else if(sym === "+" ||
@@ -135,8 +141,17 @@ num2 ${numArr[1]}`
             // debugger;
             numArr[0] = result;
             numArr[1] = "";
+            if (result === "") {
+                current = "";
+                numArr = [];
+                sym = "";
+                numArr[0] = "";
+                numArr[1] = "";
+                screen.value = "ERRRRRRROOOOOORRRR!!!!!";
+            } else {
+                screen.value = result;
+            }
 
-            screen.value = result;
             console.log(`The result is: ${result}`);
         }
         sym = clickValue;
