@@ -71,6 +71,14 @@ screen.addEventListener("input", (e) => {
     if(!isNaN(+clickValue)) {
         // debugger;
         if (numArr[0] && sym === "=") {
+            console.log("new start");
+            current = "";
+            numArr = [];
+            numArr[0] = "";
+            numArr[1] = "";
+            result = "";
+            current = current.concat(clickValue);
+            screen.value = current;
 
         } else if (numArr[0] && sym){
             current = current.concat(clickValue);
@@ -108,6 +116,14 @@ num2 ${numArr[1]}`
         numArr[1] = "";
         result = "";
         screen.value = "";
+    } else if(clickValue === "delete") {
+        current = "";
+        numArr = [];
+        sym = "";
+        numArr[0] = "";
+        numArr[1] = "";
+        result = "";
+        screen.value = "deleted";
     } else {
         // debugger;
         if (numArr[0]) {
