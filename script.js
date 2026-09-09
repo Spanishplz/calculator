@@ -71,10 +71,22 @@ screen.addEventListener("input", (e) => {
     if(!isNaN(+clickValue)) {
         if (numArr[0] && sym === "=") {
 
+        } else if (numArr[0] && sym){
+            current = current.concat(clickValue);
+            screen.value = numArr[0] + sym + current;
         } else {
             current = current.concat(clickValue);
             screen.value = current;
+
         }
+        // attempts to display things:
+        console.log(`Current: ${current}
+sym: ${sym}
+num1: ${numArr[0]}
+num2 ${numArr[1]}`
+
+                   );
+
     } else if (clickValue === ".") {
         let dot;
         for(const num of current) {
@@ -102,7 +114,7 @@ screen.addEventListener("input", (e) => {
         } else {
             numArr[0] = current;
         }
-        if (numArr[0] && numArr[1] && sym) {
+            if (numArr[0] && numArr[1] && sym) {
             console.log(`Three values:${numArr} and ${sym}`);
             result = operate(numArr[0], numArr[1], sym).toString();
             if (sym === "="){
@@ -113,7 +125,7 @@ screen.addEventListener("input", (e) => {
                 sym === "÷") {
 
             }
-
+                // debugger;
             numArr[0] = result;
             numArr[1] = "";
 
@@ -121,7 +133,11 @@ screen.addEventListener("input", (e) => {
             console.log(`The result is: ${result}`);
         }
         sym = clickValue;
-        // console.log(`My symbol: ${clickValue}`);
+        if(numArr[0] && sym  && !result && !numArr[1]) {
+            console.log(current);
+            screen.value = current + sym;
+        }
+        
         current = "";
     }
     // console.log(numArr);
