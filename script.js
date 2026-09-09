@@ -117,13 +117,15 @@ num2 ${numArr[1]}`
         result = "";
         screen.value = "";
     } else if(clickValue === "delete") {
-        current = "";
-        numArr = [];
-        sym = "";
-        numArr[0] = "";
-        numArr[1] = "";
-        result = "";
-        screen.value = "deleted";
+        if (isNaN(current.at(-1))) {
+            
+        } else {
+            // debugger;
+            console.log(`current: ${current}`);
+            current = current.slice(0, -1);
+            console.log(`current: ${current}`);
+            screen.value = screen.value.slice(0, -1);
+        }
     } else {
         // debugger;
         if (numArr[0]) {
@@ -174,7 +176,7 @@ num2 ${numArr[1]}`
 
         if(numArr[0] && sym  !== "="  && !result && !numArr[1]) {
             console.log(current);
-            screen.value = current + sym;
+            screen.value = numArr[0] + sym;
         } else if (numArr[0] && result && sym !== "=") {
             screen.value = result + sym;
         }
