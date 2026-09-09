@@ -69,15 +69,16 @@ screen.addEventListener("input", (e) => {
     const clickValue = e.detail.buttonValue;
     // console.log(clickValue);
     if(!isNaN(+clickValue)) {
+        // debugger;
         if (numArr[0] && sym === "=") {
 
         } else if (numArr[0] && sym){
             current = current.concat(clickValue);
             screen.value = numArr[0] + sym + current;
-        } else {
+
+        }else {
             current = current.concat(clickValue);
             screen.value = current;
-
         }
         // attempts to display things:
         console.log(`Current: ${current}
@@ -108,24 +109,30 @@ num2 ${numArr[1]}`
         result = "";
         screen.value = "";
     } else {
+        // debugger;
         if (numArr[0]) {
             numArr[1] = current;
 
         } else {
             numArr[0] = current;
         }
-            if (numArr[0] && numArr[1] && sym) {
+        // debugger;
+        if(numArr[0] && !numArr[1] && clickValue === "=") {
+
+        } else if (numArr[0] && numArr[1] && sym) {
             console.log(`Three values:${numArr} and ${sym}`);
             result = operate(numArr[0], numArr[1], sym).toString();
             if (sym === "="){
                 sym = "";
             }else if(sym === "+" ||
-                sym === "-" ||
-                sym === "x" ||
-                sym === "÷") {
+                     sym === "-" ||
+                     sym === "x" ||
+                     sym === "÷") {
 
             }
-                // debugger;
+
+
+            // debugger;
             numArr[0] = result;
             numArr[1] = "";
 
@@ -133,12 +140,15 @@ num2 ${numArr[1]}`
             console.log(`The result is: ${result}`);
         }
         sym = clickValue;
-        if(numArr[0] && sym  && !result && !numArr[1]) {
+
+        if(numArr[0] && sym  !== "="  && !result && !numArr[1]) {
             console.log(current);
             screen.value = current + sym;
+        } else if (numArr[0] && result && sym !== "=") {
+            screen.value = result + sym;
         }
-        
-        current = "";
+
+         current = "";
     }
     // console.log(numArr);
     // screen.value = result;
