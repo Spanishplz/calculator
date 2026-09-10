@@ -108,7 +108,7 @@ num2 ${numArr[1]}`
             screen.value = current;
         }
 
-    n} else if(clickValue === "clear") {
+    } else if(clickValue === "clear") {
         current = "";
         numArr = [];
         sym = "";
@@ -118,38 +118,32 @@ num2 ${numArr[1]}`
         screen.value = "";
     } else if(clickValue === "delete") {
         if (current === "" && numArr[0]  && !sym) {
-            debugger;
             numArr[0] = numArr[0].slice(0,-1);
             // screen.value = screen.value.slice(0, -1);
             screen.value = numArr[0];
         }  else if (isNaN(current.at(-1))) {
-            // debugger;
             console.log(screen.value);
             screen.value = screen.value.slice(0, -1);
             sym = "";
             console.log(numArr[0]);
         } else {
-            // debugger;
             console.log(`current: ${current}`);
             current = current.slice(0, -1);
             console.log(`current: ${current}`);
             screen.value = screen.value.slice(0, -1);
         }
     } else {
-        // debugger;
         if (numArr[0]) {
             numArr[1] = current;
 
         } else {
             numArr[0] = current;
         }
-        // debugger;
         if(numArr[0] && !numArr[1] && clickValue === "=") {
 
         } else if (numArr[0] && numArr[1] && sym) {
             console.log(`Three values:${numArr} and ${sym}`);
             if(numArr[1] === "0" && sym === "÷") {
-                // debugger;
 
             } else {
                 result = operate(numArr[0], numArr[1], sym).toString();
@@ -165,7 +159,6 @@ num2 ${numArr[1]}`
             }
 
 
-            // debugger;
             numArr[0] = result;
             numArr[1] = "";
             if (result === "") {
