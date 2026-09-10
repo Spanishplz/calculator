@@ -53,13 +53,10 @@ calculator.addEventListener("click", (e) => {
         screen.dispatchEvent(screenUpdate);
 
     }
-    // console.log(e);
 });
 
 
-let numA;
 let sym = "";
-let numB;
 let numArr = [];
 let current = "";
 let result = "";
@@ -90,12 +87,12 @@ screen.addEventListener("input", (e) => {
             screen.value = current;
         }
         // attempts to display things:
-        console.log(`Current: ${current}
-sym: ${sym}
-num1: ${numArr[0]}
-num2 ${numArr[1]}`
+        // console.log(`Current: ${current}
+// sym: ${sym}
+// num1: ${numArr[0]}
+// num2 ${numArr[1]}`
 
-                   );
+// );
 
     } else if (clickValue === ".") {
         let dot;
@@ -221,6 +218,9 @@ function operate(numA, numB, sym) {
     return total;
 }
 
+
+
+
 // // keyboard support
 // let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
 // document.addEventListener("keyup", (e)=> {
@@ -241,3 +241,21 @@ function operate(numA, numB, sym) {
 //         }
 //     }
 // });
+
+// button mouseover
+// mouseover buttons
+allButtons.forEach((elem) => {
+    elem.addEventListener("mouseenter", (e)=> {
+        elem.classList.toggle("mouseEnter");
+    });
+    elem.addEventListener("mouseleave", (e)=> {
+        elem.classList.toggle("mouseEnter");
+    });
+
+    elem.addEventListener("mousedown", (e)=> {
+        elem.classList.toggle("mousedown");
+    });
+    elem.addEventListener("mouseup", (e)=> {
+        elem.classList.toggle("mousedown");
+    });
+});
