@@ -1,7 +1,7 @@
 // first buttons
 let numbers = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9];
-let operations = ["+", "-", "x", "÷", "delete", "clear" ].reverse();
-// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "delete", "clear"];
+let operations = ["+", "-", "x", "÷", "del", "ac" ].reverse();
+// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
 
 const calculatorResults = document.querySelector("#calculatorResults");
 const numbersDiv = document.querySelector("#numbers");
@@ -20,6 +20,7 @@ calculatorResults.appendChild(screen);
 numbers.forEach((elem) => {
     const button = document.createElement("div");
     button.classList.add("button");
+    button.classList.add("numbers");
     numbersDiv.appendChild(button);
     button.textContent = elem.toString();
     button.setAttribute("value", `${elem}`);
@@ -108,7 +109,7 @@ num2 ${numArr[1]}`
             screen.value = current;
         }
 
-    } else if(clickValue === "clear") {
+    } else if(clickValue === "ac") {
         current = "";
         numArr = [];
         sym = "";
@@ -116,7 +117,7 @@ num2 ${numArr[1]}`
         numArr[1] = "";
         result = "";
         screen.value = "";
-    } else if(clickValue === "delete") {
+    } else if(clickValue === "del") {
         // debugger;
         if (current === "" && numArr[0]  && sym) {
 
@@ -221,7 +222,7 @@ function operate(numA, numB, sym) {
 }
 
 // // keyboard support
-// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "delete", "clear"];
+// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
 // document.addEventListener("keyup", (e)=> {
 //     const keyStrings = hotkeys.map((key) => key.toString());
 //     // console.log(keyStrings);
