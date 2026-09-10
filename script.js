@@ -117,7 +117,10 @@ num2 ${numArr[1]}`
         result = "";
         screen.value = "";
     } else if(clickValue === "delete") {
-        if (current === "" && numArr[0]  && !sym) {
+        // debugger;
+        if (current === "" && numArr[0]  && sym) {
+
+         } else if (current === "" && numArr[0]  && !sym) {
             numArr[0] = numArr[0].slice(0,-1);
             // screen.value = screen.value.slice(0, -1);
             screen.value = numArr[0];
