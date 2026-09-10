@@ -222,25 +222,35 @@ function operate(numA, numB, sym) {
 
 
 // // keyboard support
-// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
-// document.addEventListener("keyup", (e)=> {
-//     const keyStrings = hotkeys.map((key) => key.toString());
-//     // console.log(keyStrings);
-//     const keyName = e.key;
-//     console.log(keyName);
-//     if(keyStrings.includes(keyName)) {
-//         switch(keyName) {
-//         case "*":
-//             break;
-//         case "Escape":
-//             break;
-//         case "Backspace":
-//             break;
-//         case "Enter":
-//             break;
-//         }
-//     }
-// });
+let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
+document.addEventListener("keyup", (e)=> {
+    e.preventDefault();
+    const keyStrings = hotkeys.map((key) => key.toString());
+    let keyName = e.key;
+    switch(keyName) {
+    case "*":
+        keyName = "x";
+        break;
+    case "Escape":
+        keyName = "ac";
+        break;
+    case "Backspace":
+        keyName = "del";
+        break;
+    case "Enter":
+        keyName = "=";
+        break;
+    case "/":
+        keyName = "÷";
+        break;
+    default:
+        keyName = e.key;
+    }
+    
+    if(keyStrings.includes(keyName)) {
+        console.log(`e.key: ${keyName}`);
+    }
+});
 
 // button mouseover
 // mouseover buttons
