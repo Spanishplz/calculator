@@ -18,6 +18,17 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Technology';
+    src: url('fonts/Technology-Italic.woff2') format('woff2'),
+         url('fonts/Technology-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+
 body {
     height: 100vh;
     background-color: darkgray;
@@ -51,7 +62,7 @@ body {
     gap: 30px;
 
     background-color: #2a2a2a;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 10px 10px 5px black;
 }
 
@@ -68,9 +79,11 @@ body {
     width: 73%;
     height: 70px;
     border: 1px solid #b6593a;
-    font-size: 40px;
-    padding: 10px 30px;
+    font-size: 55px;
+    padding: 10px 30px 5px 30px;;
 
+    font-family: 'Technology';
+    letter-spacing: 8px;
     border-radius: 8px;
     box-shadow: 8px 8px 1px lightgrey inset;
 
