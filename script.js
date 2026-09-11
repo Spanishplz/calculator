@@ -56,49 +56,12 @@ calculator.addEventListener("click", (e) => {
     }
 });
 
-
-let sym = "";
-let numArr = [];
-let current = "";
-let result = "";
-
 //screen numbers event listener
 let screenUpdate = new Event("input");
 screen.addEventListener("input", (e) => {
     const clickValue = e.detail.buttonValue;
     logic(clickValue);
 });
-
-
-function sum(numA, numB) {
-    return Number(numA) + Number(numB);
-}
-
-
-
-function operate(numA, numB, sym) {
-    let total = "";
-    switch (sym) {
-    case "+":
-        total = Number(numA) + Number(numB);
-        break;
-    case "-":
-        total = Number(numA) - Number(numB);
-        break;
-    case "x":
-        total = Number(numA) * Number(numB);
-        break;
-    case "÷":
-        total = Number(numA) / Number(numB);
-        break;
-    default:
-        break;
-    }
-    return total;
-}
-
-
-
 
 // // keyboard support
 let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
@@ -131,6 +94,44 @@ document.addEventListener("keyup", (e)=> {
         logic(keyName);
     }
 });
+
+let sym = "";
+let numArr = [];
+let current = "";
+let result = "";
+
+
+
+function sum(numA, numB) {
+    return Number(numA) + Number(numB);
+}
+
+
+
+function operate(numA, numB, sym) {
+    let total = "";
+    switch (sym) {
+    case "+":
+        total = Number(numA) + Number(numB);
+        break;
+    case "-":
+        total = Number(numA) - Number(numB);
+        break;
+    case "x":
+        total = Number(numA) * Number(numB);
+        break;
+    case "÷":
+        total = Number(numA) / Number(numB);
+        break;
+    default:
+        break;
+    }
+    return total;
+}
+
+
+
+
 
 // button mouseover
 // mouseover buttons
