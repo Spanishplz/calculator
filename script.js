@@ -4,15 +4,20 @@ let operations = ["+", "-", "x", "÷", "del", "ac" ].reverse();
 // let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
 
 
+
 const calculatorResults = document.querySelector("#calculatorResults");
 const numbersDiv = document.querySelector("#numbers");
 const symbolsDiv = document.querySelector("#symbols");
 
+
 // create screen
 const screen = document.createElement("input");
 screen.setAttribute("id", "screen");
-// screen.setAttribute("type", "text");
+screen.setAttribute("type", "text");
+screen.readOnly = true;
+// screen.myProperty("readonly");
 screen.style.textAlign = "right";
+
 
 
 calculatorResults.appendChild(screen);
@@ -46,22 +51,16 @@ calculator.addEventListener("click", (e) => {
     const button = e.target;
     const value = e.target.getAttribute("value");
     if(allButtons.includes(button)) {
-        let screenUpdate = new CustomEvent("input", {
-            detail: {
-                buttonValue: value,
-            }
-        });
-        screen.dispatchEvent(screenUpdate);
-
+        logic(value);
     }
 });
 
 //screen numbers event listener
-let screenUpdate = new Event("input");
-screen.addEventListener("input", (e) => {
-    const clickValue = e.detail.buttonValue;
-    logic(clickValue);
-});
+// let screenUpdate = new Event("input");
+// screen.addEventListener("input", (e) => {
+//     const clickValue = e.detail.buttonValue;
+//     logic(clickValue);
+// });
 
 // // keyboard support
 let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
@@ -302,9 +301,18 @@ let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "esc", "⌫", "/"
 // let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "ac", "del", "÷", "x", "-", "+"];
 
 allButtons.forEach((elem, index) => {
-    const testHot = document.createElement("div");
-    testHot.classList.add("hotkeyBox");
-    testHot.textContent = `${hotkeysSymbols[index]}`;
-    elem.appendChild(testHot);
+    const hotkey = document.createElement("div");
+    hotkey.classList.add("hotkeyBox");
+    hotkey.textContent = `${hotkeysSymbols[index]}`;
+    elem.appendChild(hotkey);
 });
 
+// document.addEventListener("keydown", (e)=> {
+//     console.log(e.key);
+// });
+
+window.addEventListener("load", (e) => {
+    console.log("all ready");
+});
+
+focus();

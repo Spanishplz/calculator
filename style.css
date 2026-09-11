@@ -75,6 +75,9 @@ body {
     box-shadow: 8px 8px 1px lightgrey inset;
 
 }
+#screen:read-only {
+    
+}
 
 /* bottom */
 #calculatorButtons {
@@ -145,7 +148,7 @@ body {
 
 .hotkeyBox {
     /* border: 1px solid black; */
-    color: black;;
+    color: #7ecd15;
     display: flex;
 
     font-size: 18px;
