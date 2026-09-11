@@ -179,6 +179,7 @@ function logic(value) {
 // );
 
     } else if (clickValue === ".") {
+        // debugger;
         let dot;
         for(const num of current) {
             if(num === ".") {
@@ -187,7 +188,7 @@ function logic(value) {
         }
         if(!dot) {
             current = current.concat(clickValue);
-            screen.value = current;
+            screen.value = screen.value + clickValue;
         }
 
     } else if(clickValue === "ac") {
@@ -207,16 +208,18 @@ function logic(value) {
             // screen.value = screen.value.slice(0, -1);
             screen.value = numArr[0];
         }  else if (isNaN(current.at(-1))) {
+            current = current.slice(0, -1);
             console.log(screen.value);
             screen.value = screen.value.slice(0, -1);
-            sym = "";
-            console.log(numArr[0]);
+            // sym = "";
         } else {
-            console.log(`current: ${current}`);
             current = current.slice(0, -1);
-            console.log(`current: ${current}`);
             screen.value = screen.value.slice(0, -1);
         }
+        console.log(`num1: ${numArr[0]}
+num2: ${numArr[1]}
+current: ${current}
+symbol: ${sym}`);
     } else {
         if (numArr[0]) {
             numArr[1] = current;
@@ -274,7 +277,7 @@ function logic(value) {
         sym = clickValue;
 
         if(numArr[0] && sym  !== "="  && !result && !numArr[1]) {
-            console.log(current);
+            // console.log(current);
             screen.value = numArr[0] + sym;
         } else if (numArr[0] && result && sym !== "=") {
             screen.value = result + sym;
