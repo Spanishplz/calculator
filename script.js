@@ -156,7 +156,7 @@ allButtons.forEach((elem) => {
 function logic(value) {
     let clickValue = value;
         if(!isNaN(+clickValue)) {
-            if(current.length === 12) {
+            if(current.length === 10) {
                 console.log(`Maxlength reached: ${current.length}`);
             } else if (numArr[0] && sym === "=") {
             console.log("new start");
@@ -248,6 +248,20 @@ symbol: ${sym}`);
 
             } else {
                 result = operate(numArr[0], numArr[1], sym).toString();
+                // console.log(`The result is: ${result}`);
+                // let resultLength = result.length;
+                // console.log(resultLength);
+                if (result > 99999999999999999999) {
+                    screen.value = "NUMBER TOO BIG";
+                    current = "";
+                    numArr = [];
+                    sym = "";
+                    numArr[0] = "";
+                    numArr[1] = "";
+                    result = "";
+                    // result = result.slice(0, 14);
+                }
+                
                 console.log(`The result is: ${result}`);
                 let resultArray = result.split("");
                 let dotExists = resultArray.includes(".");
@@ -294,7 +308,7 @@ symbol: ${sym}`);
 // hotkey info
 // const numbersDiv = document.querySelector("#numbers");
 
-let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "esc", "⌫", "/", "*", "-", "+"];
+let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "esc", "⌫", "/", "*/x", "-", "+"];
 // let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "ac", "del", "÷", "x", "-", "+"];
 
 allButtons.forEach((elem, index) => {
