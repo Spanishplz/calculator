@@ -65,127 +65,7 @@ let result = "";
 let screenUpdate = new Event("input");
 screen.addEventListener("input", (e) => {
     const clickValue = e.detail.buttonValue;
-    if(!isNaN(+clickValue)) {
-        if (numArr[0] && sym === "=") {
-            console.log("new start");
-            current = "";
-            numArr = [];
-            numArr[0] = "";
-            numArr[1] = "";
-            result = "";
-            current = current.concat(clickValue);
-            screen.value = current;
-
-        } else if (numArr[0] && sym){
-            current = current.concat(clickValue);
-            screen.value = numArr[0] + sym + current;
-
-        }else {
-            current = current.concat(clickValue);
-            screen.value = current;
-        }
-        // attempts to display things:
-        // console.log(`Current: ${current}
-// sym: ${sym}
-// num1: ${numArr[0]}
-// num2 ${numArr[1]}`
-
-// );
-
-    } else if (clickValue === ".") {
-        let dot;
-        for(const num of current) {
-            if(num === ".") {
-                dot = true;
-            }
-        }
-        if(!dot) {
-            current = current.concat(clickValue);
-            screen.value = current;
-        }
-
-    } else if(clickValue === "ac") {
-        current = "";
-        numArr = [];
-        sym = "";
-        numArr[0] = "";
-        numArr[1] = "";
-        result = "";
-        screen.value = "";
-    } else if(clickValue === "del") {
-        // debugger;
-        if (current === "" && numArr[0]  && sym) {
-
-         } else if (current === "" && numArr[0]  && !sym) {
-            numArr[0] = numArr[0].slice(0,-1);
-            // screen.value = screen.value.slice(0, -1);
-            screen.value = numArr[0];
-        }  else if (isNaN(current.at(-1))) {
-            console.log(screen.value);
-            screen.value = screen.value.slice(0, -1);
-            sym = "";
-            console.log(numArr[0]);
-        } else {
-            console.log(`current: ${current}`);
-            current = current.slice(0, -1);
-            console.log(`current: ${current}`);
-            screen.value = screen.value.slice(0, -1);
-        }
-    } else {
-        if (numArr[0]) {
-            numArr[1] = current;
-
-        } else {
-            numArr[0] = current;
-        }
-        if(numArr[0] && !numArr[1] && clickValue === "=") {
-
-        } else if (numArr[0] && numArr[1] && sym) {
-            console.log(`Three values:${numArr} and ${sym}`);
-            if(numArr[1] === "0" && sym === "÷") {
-
-            } else {
-                result = operate(numArr[0], numArr[1], sym).toString();
-            }
-
-            if (sym === "="){
-                sym = "";
-            }else if(sym === "+" ||
-                     sym === "-" ||
-                     sym === "x" ||
-                     sym === "÷") {
-
-            }
-
-
-            numArr[0] = result;
-            numArr[1] = "";
-            if (result === "") {
-                current = "";
-                numArr = [];
-                sym = "";
-                numArr[0] = "";
-                numArr[1] = "";
-                screen.value = "ERRRRRRROOOOOORRRR!!!!!";
-            } else {
-                screen.value = result;
-            }
-
-            console.log(`The result is: ${result}`);
-        }
-        sym = clickValue;
-
-        if(numArr[0] && sym  !== "="  && !result && !numArr[1]) {
-            console.log(current);
-            screen.value = numArr[0] + sym;
-        } else if (numArr[0] && result && sym !== "=") {
-            screen.value = result + sym;
-        }
-
-         current = "";
-    }
-    // console.log(numArr);
-    // screen.value = result;
+    logic(clickValue);
 });
 
 
@@ -271,7 +151,6 @@ allButtons.forEach((elem) => {
 
 function logic(value) {
     let clickValue = value;
-    console.log(clickValue);
         if(!isNaN(+clickValue)) {
         if (numArr[0] && sym === "=") {
             console.log("new start");
@@ -345,14 +224,26 @@ function logic(value) {
         } else {
             numArr[0] = current;
         }
+        // debugger;
         if(numArr[0] && !numArr[1] && clickValue === "=") {
 
-        } else if (numArr[0] && numArr[1] && sym) {
+        } else if (numArr[0] && !numArr[1] && clickValue === "=" && sym) {
+
+        }else if (numArr[0] && numArr[1] && sym) {
             console.log(`Three values:${numArr} and ${sym}`);
             if(numArr[1] === "0" && sym === "÷") {
 
             } else {
                 result = operate(numArr[0], numArr[1], sym).toString();
+                console.log(`The result is: ${result}`);
+                let resultArray = result.split("");
+                let dotExists = resultArray.includes(".");
+                if(dotExists) {
+                    result = Number(result).toFixed(4).toString();
+
+                }
+
+                console.log(resultArray);
             }
 
             if (sym === "="){
@@ -393,4 +284,6 @@ function logic(value) {
     }
     // console.log(numArr);
     // screen.value = result;
+
+ 
 }
