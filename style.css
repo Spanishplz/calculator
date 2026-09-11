@@ -115,6 +115,7 @@ body {
     background-color: #424242;
     color: white;
     box-shadow: 5px 5px 20px black;
+    position: relative;
 }
 
 .symbols {
@@ -141,3 +142,15 @@ body {
 .pressed {
     
 }
+
+.hotkeyBox {
+    /* border: 1px solid black; */
+    color: black;;
+    display: flex;
+
+    font-size: 18px;
+    position: absolute;
+    right: 8px;
+    bottom: 5px;
+}
+

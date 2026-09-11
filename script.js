@@ -3,6 +3,7 @@ let numbers = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let operations = ["+", "-", "x", "÷", "del", "ac" ].reverse();
 // let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
 
+
 const calculatorResults = document.querySelector("#calculatorResults");
 const numbersDiv = document.querySelector("#numbers");
 const symbolsDiv = document.querySelector("#symbols");
@@ -147,6 +148,9 @@ allButtons.forEach((elem) => {
     elem.addEventListener("mouseup", (e)=> {
         elem.classList.toggle("mousedown");
     });
+    // elem.addEventListener("contextmenu", (e) => {
+    //     e.preventDefault();
+    // });
 });
 
 function logic(value) {
@@ -287,6 +291,19 @@ symbol: ${sym}`);
     }
     // console.log(numArr);
     // screen.value = result;
-
- 
 }
+
+
+// hotkey info
+// const numbersDiv = document.querySelector("#numbers");
+
+let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "esc", "⌫", "/", "*", "-", "+"];
+// let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "ac", "del", "÷", "x", "-", "+"];
+
+allButtons.forEach((elem, index) => {
+    const testHot = document.createElement("div");
+    testHot.classList.add("hotkeyBox");
+    testHot.textContent = `${hotkeysSymbols[index]}`;
+    elem.appendChild(testHot);
+});
+
