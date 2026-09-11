@@ -156,7 +156,9 @@ allButtons.forEach((elem) => {
 function logic(value) {
     let clickValue = value;
         if(!isNaN(+clickValue)) {
-        if (numArr[0] && sym === "=") {
+            if(current.length === 12) {
+                console.log(`Maxlength reached: ${current.length}`);
+            } else if (numArr[0] && sym === "=") {
             console.log("new start");
             current = "";
             numArr = [];
@@ -206,7 +208,10 @@ function logic(value) {
     } else if(clickValue === "del") {
         // debugger;
         if (current === "" && numArr[0]  && sym) {
-
+            sym = "";
+            current = numArr[0];
+            numArr[0] = "";
+            screen.value = current;
          } else if (current === "" && numArr[0]  && !sym) {
             numArr[0] = numArr[0].slice(0,-1);
             // screen.value = screen.value.slice(0, -1);
@@ -225,6 +230,7 @@ num2: ${numArr[1]}
 current: ${current}
 symbol: ${sym}`);
     } else {
+        // debugger;
         if (numArr[0]) {
             numArr[1] = current;
 
@@ -251,15 +257,6 @@ symbol: ${sym}`);
                 }
 
                 console.log(resultArray);
-            }
-
-            if (sym === "="){
-                sym = "";
-            }else if(sym === "+" ||
-                     sym === "-" ||
-                     sym === "x" ||
-                     sym === "÷") {
-
             }
 
 

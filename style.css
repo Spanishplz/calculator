@@ -77,10 +77,11 @@ body {
 
 #screen {
     width: 73%;
-    height: 70px;
+    height: 100px;
     border: 1px solid #b6593a;
-    font-size: 55px;
+    font-size: 70px;
     padding: 10px 30px 5px 30px;;
+    maxlength: 12;
 
     font-family: 'Technology';
     letter-spacing: 8px;
