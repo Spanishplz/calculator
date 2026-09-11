@@ -64,8 +64,8 @@ calculator.addEventListener("click", (e) => {
 
 // // keyboard support
 let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
-document.addEventListener("keyup", (e)=> {
-    e.preventDefault();
+document.addEventListener("keydown", (e)=> {
+    // e.preventDefault();
     const keyStrings = hotkeys.map((key) => key.toString());
     let keyName = e.key;
     switch(keyName) {
@@ -89,7 +89,7 @@ document.addEventListener("keyup", (e)=> {
     }
 
     if(keyStrings.includes(keyName)) {
-        console.log(`e.key: ${keyName}`);
+        // console.log(`e.key: ${keyName}`);
         logic(keyName);
     }
 });
@@ -318,12 +318,78 @@ allButtons.forEach((elem, index) => {
     elem.appendChild(hotkey);
 });
 
-// document.addEventListener("keydown", (e)=> {
-//     console.log(e.key);
+
+// window.addEventListener("load", (e) => {
+//     console.log("all ready");
 // });
 
-window.addEventListener("load", (e) => {
-    console.log("all ready");
+
+// key effect in buttons
+document.addEventListener("keydown", (e)=> {
+    let buttonKey = e.key;
+    switch(buttonKey) {
+    case "*":
+        buttonKey = "x";
+        break;
+    case "Escape":
+        buttonKey = "ac";
+        break;
+    case "Backspace":
+        buttonKey = "del";
+        break;
+    case "Enter":
+        buttonKey = "=";
+        break;
+    case "/":
+        buttonKey = "÷";
+        break;
+    default:
+        buttonKey = e.key;
+    }
+
+    allButtons.forEach(elem => {
+        let buttonValue = elem.getAttribute("value");
+        if (buttonKey === buttonValue) {
+            console.log("equals!");
+            console.log(elem);
+            elem.classList.toggle("mousedown");
+            
+        }
+    });
 });
+
+// keyboard events 
+document.addEventListener("keyup", (e)=> {
+    let buttonKey = e.key;
+    switch(buttonKey) {
+    case "*":
+        buttonKey = "x";
+        break;
+    case "Escape":
+        buttonKey = "ac";
+        break;
+    case "Backspace":
+        buttonKey = "del";
+        break;
+    case "Enter":
+        buttonKey = "=";
+        break;
+    case "/":
+        buttonKey = "÷";
+        break;
+    default:
+        buttonKey = e.key;
+    }
+
+    allButtons.forEach(elem => {
+        let buttonValue = elem.getAttribute("value");
+        if (buttonKey === buttonValue) {
+            console.log("equals!");
+            console.log(elem);
+            elem.classList.toggle("mousedown");
+        }
+    });
+});
+
 
 focus();
