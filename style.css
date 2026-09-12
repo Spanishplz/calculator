@@ -56,7 +56,6 @@ body {
     box-shadow: 10px 10px 5px black;
 }
 
-/* top */
 #calculatorResults {
     display: flex;
     justify-content: center;
@@ -80,7 +79,6 @@ body {
 
 }
 
-/* bottom */
 #calculatorButtons {
     display: flex;
     align-items: flex-start;
@@ -113,7 +111,6 @@ body {
     justify-content: center;
     align-items: center;
 
-    /* style */
     border: 1px solid black;
     border-radius: 8px;
     background-color: #424242;
@@ -136,7 +133,7 @@ body {
 .mousedown {
     border: 1px solid black;
     background-color: #349fa5;
-} 
+}
 
 .hotkeyBox {
     color: #7ecd15;
@@ -147,4 +144,3 @@ body {
     right: 8px;
     bottom: 5px;
 }
-

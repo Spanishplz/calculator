@@ -1,21 +1,16 @@
 // first buttons
 let numbers = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let operations = ["+", "-", "x", "÷", "del", "ac" ].reverse();
-// let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
-
-
 
 const calculatorResults = document.querySelector("#calculatorResults");
 const numbersDiv = document.querySelector("#numbers");
 const symbolsDiv = document.querySelector("#symbols");
-
 
 // create screen
 const screen = document.createElement("input");
 screen.setAttribute("id", "screen");
 screen.setAttribute("type", "text");
 screen.readOnly = true;
-// screen.myProperty("readonly");
 screen.style.textAlign = "right";
 
 
@@ -55,14 +50,7 @@ calculator.addEventListener("click", (e) => {
     }
 });
 
-//screen numbers event listener
-// let screenUpdate = new Event("input");
-// screen.addEventListener("input", (e) => {
-//     const clickValue = e.detail.buttonValue;
-//     logic(clickValue);
-// });
-
-// // keyboard support
+// keyboard support
 let hotkeys = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "x", "÷", "del", "ac"];
 document.addEventListener("keydown", (e)=> {
     // e.preventDefault();
@@ -89,7 +77,6 @@ document.addEventListener("keydown", (e)=> {
     }
 
     if(keyStrings.includes(keyName)) {
-        // console.log(`e.key: ${keyName}`);
         logic(keyName);
     }
 });
@@ -128,11 +115,6 @@ function operate(numA, numB, sym) {
     return total;
 }
 
-
-
-
-
-// button mouseover
 // mouseover buttons
 allButtons.forEach((elem) => {
     elem.addEventListener("mouseenter", (e)=> {
@@ -148,9 +130,6 @@ allButtons.forEach((elem) => {
     elem.addEventListener("mouseup", (e)=> {
         elem.classList.toggle("mousedown");
     });
-    // elem.addEventListener("contextmenu", (e) => {
-    //     e.preventDefault();
-    // });
 });
 
 function logic(value) {
@@ -176,16 +155,8 @@ function logic(value) {
             current = current.concat(clickValue);
             screen.value = current;
         }
-        // attempts to display things:
-        // console.log(`Current: ${current}
-// sym: ${sym}
-// num1: ${numArr[0]}
-// num2 ${numArr[1]}`
-
-// );
 
     } else if (clickValue === ".") {
-        // debugger;
         let dot;
         for(const num of current) {
             if(num === ".") {
@@ -206,7 +177,6 @@ function logic(value) {
         result = "";
         screen.value = "";
     } else if(clickValue === "del") {
-        // debugger;
         if (current === "" && numArr[0]  && sym) {
             sym = "";
             current = numArr[0];
@@ -214,13 +184,11 @@ function logic(value) {
             screen.value = current;
          } else if (current === "" && numArr[0]  && !sym) {
             numArr[0] = numArr[0].slice(0,-1);
-            // screen.value = screen.value.slice(0, -1);
             screen.value = numArr[0];
         }  else if (isNaN(current.at(-1))) {
             current = current.slice(0, -1);
             console.log(screen.value);
             screen.value = screen.value.slice(0, -1);
-            // sym = "";
         } else {
             current = current.slice(0, -1);
             screen.value = screen.value.slice(0, -1);
@@ -230,14 +198,12 @@ num2: ${numArr[1]}
 current: ${current}
 symbol: ${sym}`);
     } else {
-        // debugger;
         if (numArr[0]) {
             numArr[1] = current;
 
         } else {
             numArr[0] = current;
         }
-        // debugger;
         if(numArr[0] && !numArr[1] && clickValue === "=") {
 
         } else if (numArr[0] && !numArr[1] && clickValue === "=" && sym) {
@@ -248,9 +214,6 @@ symbol: ${sym}`);
 
             } else {
                 result = operate(numArr[0], numArr[1], sym).toString();
-                // console.log(`The result is: ${result}`);
-                // let resultLength = result.length;
-                // console.log(resultLength);
                 if (result > 99999999999999999999) {
                     screen.value = "NUMBER TOO BIG";
                     current = "";
@@ -259,9 +222,8 @@ symbol: ${sym}`);
                     numArr[0] = "";
                     numArr[1] = "";
                     result = "";
-                    // result = result.slice(0, 14);
                 }
-                
+
                 console.log(`The result is: ${result}`);
                 let resultArray = result.split("");
                 let dotExists = resultArray.includes(".");
@@ -292,7 +254,6 @@ symbol: ${sym}`);
         sym = clickValue;
 
         if(numArr[0] && sym  !== "="  && !result && !numArr[1]) {
-            // console.log(current);
             screen.value = numArr[0] + sym;
         } else if (numArr[0] && result && sym !== "=") {
             screen.value = result + sym;
@@ -300,16 +261,11 @@ symbol: ${sym}`);
 
          current = "";
     }
-    // console.log(numArr);
-    // screen.value = result;
 }
 
 
 // hotkey info
-// const numbersDiv = document.querySelector("#numbers");
-
 let hotkeysSymbols = [ 0, ".", "=/↵", 1, 2, 3, 4, 5, 6, 7, 8, 9, "esc", "⌫", "/", "*/x", "-", "+"];
-// let hotkeysSymbols = [ 0, ".", "=", 1, 2, 3, 4, 5, 6, 7, 8, 9, "ac", "del", "÷", "x", "-", "+"];
 
 allButtons.forEach((elem, index) => {
     const hotkey = document.createElement("div");
@@ -317,12 +273,6 @@ allButtons.forEach((elem, index) => {
     hotkey.textContent = `${hotkeysSymbols[index]}`;
     elem.appendChild(hotkey);
 });
-
-
-// window.addEventListener("load", (e) => {
-//     console.log("all ready");
-// });
-
 
 // key effect in buttons
 document.addEventListener("keydown", (e)=> {
@@ -353,12 +303,12 @@ document.addEventListener("keydown", (e)=> {
             console.log("equals!");
             console.log(elem);
             elem.classList.toggle("mousedown");
-            
+
         }
     });
 });
 
-// keyboard events 
+// keyboard events
 document.addEventListener("keyup", (e)=> {
     let buttonKey = e.key;
     switch(buttonKey) {
@@ -390,6 +340,5 @@ document.addEventListener("keyup", (e)=> {
         }
     });
 });
-
 
 focus();
